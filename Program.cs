@@ -86,5 +86,9 @@ public class HumiditySensor : Sensor
 
 public class LightSensor : Sensor
 {
+	public LightSensor()
+	{
+		SensorUnit = Unit.Lux;
+	}
 	public override double ReadValue() => Random.Shared.Next(0, 1001);
 }
