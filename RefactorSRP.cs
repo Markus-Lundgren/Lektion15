@@ -10,12 +10,7 @@ class Program
 
 		var order = new Order();
 		order.Add(items);
-		Console.WriteLine("KVITTO");
-		foreach (var i in order.GetList)
-			Console.WriteLine($"{i.Name} x{i.Quantity} á {i.UnitPrice:C} = {(i.UnitPrice * i.Quantity):C}");
-		Console.WriteLine($"Delsumma: {order.CalculateSubtotal():C}");
-		Console.WriteLine($"Moms (25%): {order.CalculateVat():C}");
-		Console.WriteLine($"Totalt: {order.CalculateTotal():C}");
+		ReceiptPrinter.PrintReceipt(order);
 	}
 }
 
@@ -50,5 +45,18 @@ class Order
 	public decimal CalculateTotal(decimal rate = 0.25m)
 	{
 		return CalculateSubtotal() + CalculateVat(rate);
+	}
+}
+
+class ReceiptPrinter
+{
+	public static void PrintReceipt(Order order)
+	{
+		Console.WriteLine("KVITTO");
+		foreach (var i in order.GetList)
+			Console.WriteLine($"{i.Name} x{i.Quantity} á {i.UnitPrice:C} = {(i.UnitPrice * i.Quantity):C}");
+		Console.WriteLine($"Delsumma: {order.CalculateSubtotal():C}");
+		Console.WriteLine($"Moms (25%): {order.CalculateVat():C}");
+		Console.WriteLine($"Totalt: {order.CalculateTotal():C}");
 	}
 }
