@@ -22,26 +22,22 @@ class Program
 public abstract class Animal
 {
 	public abstract string MakeSound();
-	public abstract string Name { get; protected set; }
+	public string Name { get; protected set; }
+	protected Animal(string name)
+	{
+		Name = name;
+	}
 }
 
 public class Dog : Animal
 {
-	public override string Name { get; protected set; }
-	public Dog(string name)
-	{
-		Name = name;
-	}
+	public Dog(string name) : base(name) { }
 	public override string MakeSound() => "Woof!";
 }
 
 public class Cat : Animal
 {
-	public override string Name { get; protected set; }
-	public Cat(string name)
-	{
-		Name = name;
-	}
+	public Cat(string name) : base(name) { }
 	public override string MakeSound() => "Meow!";
 }
 
