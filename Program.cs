@@ -14,7 +14,7 @@ class Program
 		}
 		foreach (Sensor s in sensors)
 		{
-			Console.WriteLine($"{s.ReadValue()}{s.GetUnitSymbol()}");
+			Console.WriteLine($"{s.ReadValue()}{s.UnitSymbol}");
 		}
 	}
 }
@@ -49,30 +49,19 @@ public abstract class Sensor
 {
 	public enum Unit
 	{
-		Celcius, Fahrenheit, Kelvin, Percentage
+		Celcius, Fahrenheit, Kelvin, Percentage, Lux
 	}
 	public Unit SensorUnit { get; protected set; }
 
-	public string GetUnitSymbol()
+	public string UnitSymbol => SensorUnit switch
 	{
-		string symbol = "";
-		switch (SensorUnit)
-		{
-			case Unit.Celcius:
-				symbol = "C";
-				break;
-			case Unit.Fahrenheit:
-				symbol = "F";
-				break;
-			case Unit.Kelvin:
-				symbol = "K";
-				break;
-			case Unit.Percentage:
-				symbol = "%";
-				break;
-		}
-		return symbol;
-	}
+		Unit.Celcius => "C",
+		Unit.Fahrenheit => "F",
+		Unit.Kelvin => "K",
+		Unit.Percentage => "%",
+		Unit.Lux => "lx",
+		_ => "Unknown"
+	};
 	public abstract double ReadValue();
 }
 
@@ -94,3 +83,4 @@ public class HumiditySensor : Sensor
 	}
 	public override double ReadValue() => Random.Shared.Next(0, 101);
 }
+
