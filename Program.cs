@@ -43,6 +43,11 @@ public abstract class Sensor
 	}
 	public Unit SensorUnit { get; protected set; }
 
+	public Sensor(Unit u)
+	{
+		SensorUnit = u;
+	}
+
 	public string UnitSymbol => SensorUnit switch
 	{
 		Unit.Celcius => "°C",
@@ -56,27 +61,17 @@ public abstract class Sensor
 }
 public class TemperatureSensor : Sensor
 {
-
-	public TemperatureSensor()
-	{
-		SensorUnit = Unit.Celcius;
-	}
+	public TemperatureSensor() : base(Unit.Celcius) { }
 	public override double ReadValue() => Random.Shared.Next(-10, 51);
 }
 
 public class HumiditySensor : Sensor
 {
-	public HumiditySensor()
-	{
-		SensorUnit = Unit.Percentage;
-	}
+	public HumiditySensor() : base(Unit.Percentage) { }
 	public override double ReadValue() => Random.Shared.Next(0, 101);
 }
 public class LightSensor : Sensor
 {
-	public LightSensor()
-	{
-		SensorUnit = Unit.Lux;
-	}
+	public LightSensor() : base(Unit.Lux) { }
 	public override double ReadValue() => Random.Shared.Next(0, 1001);
 }
