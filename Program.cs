@@ -7,7 +7,7 @@ class Program
 	static void Main(string[] args)
 	{
 		List<Animal> animals = [new Dog("Grace"), new Cat("Barbro")];
-		List<Sensor> sensors = [new TemperatureSensor(), new HumiditySensor()];
+		List<Sensor> sensors = [new TemperatureSensor(), new HumiditySensor(), new LightSensor()];
 		foreach (Animal a in animals)
 		{
 			Console.WriteLine($"{a.Name} säger {a.MakeSound()}");
@@ -84,3 +84,7 @@ public class HumiditySensor : Sensor
 	public override double ReadValue() => Random.Shared.Next(0, 101);
 }
 
+public class LightSensor : Sensor
+{
+	public override double ReadValue() => Random.Shared.Next(0, 1001);
+}
