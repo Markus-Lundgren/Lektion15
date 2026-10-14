@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Lektion15;
+﻿namespace Lektion15;
 
 class Program
 {
@@ -18,7 +16,6 @@ class Program
 		}
 	}
 }
-
 public abstract class Animal
 {
 	public abstract string MakeSound();
@@ -28,19 +25,16 @@ public abstract class Animal
 		Name = name;
 	}
 }
-
 public class Dog : Animal
 {
 	public Dog(string name) : base(name) { }
 	public override string MakeSound() => "Woof!";
 }
-
 public class Cat : Animal
 {
 	public Cat(string name) : base(name) { }
 	public override string MakeSound() => "Meow!";
 }
-
 public abstract class Sensor
 {
 	public enum Unit
@@ -51,16 +45,15 @@ public abstract class Sensor
 
 	public string UnitSymbol => SensorUnit switch
 	{
-		Unit.Celcius => "C",
-		Unit.Fahrenheit => "F",
-		Unit.Kelvin => "K",
+		Unit.Celcius => "°C",
+		Unit.Fahrenheit => "°F",
+		Unit.Kelvin => "°K",
 		Unit.Percentage => "%",
 		Unit.Lux => "lx",
 		_ => "Unknown"
 	};
 	public abstract double ReadValue();
 }
-
 public class TemperatureSensor : Sensor
 {
 
@@ -79,7 +72,6 @@ public class HumiditySensor : Sensor
 	}
 	public override double ReadValue() => Random.Shared.Next(0, 101);
 }
-
 public class LightSensor : Sensor
 {
 	public LightSensor()
